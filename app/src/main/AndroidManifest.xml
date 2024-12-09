@@ -36,6 +36,12 @@
         android:theme="@style/Theme.FixcarApp"
         tools:targetApi="31">
         <activity
+            android:name=".TrungTam.AddInformationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TrungTam.DanhSachTrungTam.AddInformationActivity"
+            android:exported="false" />
+        <activity
             android:name=".TrungTam.CompleteActivity"
             android:exported="false" />
         <activity

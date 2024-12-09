@@ -48,6 +48,14 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestV
         holder.tvPhone.setText(request.getPhone());
         holder.tvTime.setText(request.getTime());
 
+        // Sự kiện cho nút "Thêm Thông Tin"
+        holder.btnThemThongTin.setOnClickListener(v -> {
+            // Chuyển đến AddInformationActivity
+            Intent intent = new Intent(context, AddInformationActivity.class);
+            intent.putExtra("requestId", request.getId()); // Truyền ID của Request vào AddInformationActivity
+            context.startActivity(intent);
+        });
+
         // Ẩn hoặc hiện các nút dựa trên trạng thái
 
         if ("COMPLETED".equals(request.getStatus())) {
@@ -125,6 +133,9 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestV
         Button btnCancle;
         Button btnComplete;
 
+        Button btnThemThongTin;
+
+
 
         public RequestViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -138,24 +149,10 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestV
             btnComplete = itemView.findViewById(R.id.btnComplete);
             imgScenePhoto = itemView.findViewById(R.id.imgScenePhoto);
             tvTime = itemView.findViewById(R.id.tvTime);
+            btnThemThongTin = itemView.findViewById(R.id.bt_ThemThongTin);
+
         }
     }
-
-//private void updateRequestStatus(int requestId) {
-//    // Tham chiếu đến nút "requests" trong Firebase
-//    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Requests");
-//
-//    // Cập nhật trường status thành "accepted"
-//    databaseReference.child(String.valueOf(requestId)).child("status").setValue("ACCEPTED")
-//            .addOnSuccessListener(aVoid -> {
-//                // Thông báo thành công
-//                Toast.makeText(context, "Trạng thái đã được cập nhật thành accepted!", Toast.LENGTH_SHORT).show();
-//            })
-//            .addOnFailureListener(e -> {
-//                // Thông báo lỗi
-//                Toast.makeText(context, "Cập nhật trạng thái thất bại: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-//            });
-//}
 
     private void updateRequestStatus(int requestId, String newStatus) {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Requests");
@@ -184,7 +181,7 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestV
         // Lọc ra những mục không có trạng thái COMPLETED
         this.requestList = new ArrayList<>();
         for (Request request : requestList) {
-            if (!"COMPLETED".equals(request.getStatus())) {
+            if (!"COMPLETED".equals(request.getStatus()) && !"UNACCEPTABLE".equals(request.getStatus())) {
                 this.requestList.add(request);
             }
         }

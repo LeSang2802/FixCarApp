@@ -28,6 +28,9 @@ public class DetailActivity extends AppCompatActivity {
 
     private TextView tvId, tvAddress, tvProblem, tvVehicle, tvPhone, tvEmail, tvTime;
     private ImageView imgScenePhoto, imgvBack, imgvPhone,  icLocation;
+
+    private TextView tvRequestId, tvAdditionalTime, tvAdditionalDescription, tvAdditionalQuantity;
+
 //    private Button btnComplete;
 
     private int requestId;

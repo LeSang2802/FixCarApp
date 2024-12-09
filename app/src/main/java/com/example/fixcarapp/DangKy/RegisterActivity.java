@@ -111,3 +111,8 @@ public class RegisterActivity extends AppCompatActivity {
                 });
     }
 }
+
+//tk scuuho@gmail.com
+//mk scuuho123
+
+// lắng nghe cảm biến nhiệt độ từ Vitual sensor trong extened controls bằng sensorManager

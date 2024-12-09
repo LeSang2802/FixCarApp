@@ -1,6 +1,10 @@
 package com.example.fixcarapp.TaiKhoan;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,10 +35,40 @@ public class AccountFragment extends Fragment {
     private Button btnLogout,btnHistory,btnUpdatePassword,btnUpdateAccount;
     private FirebaseUser user;
 
+//    private SensorManager sensorManager;
+//    private Sensor temperatureSensor;
+//    private SensorEventListener temperatureListener;
+//    private TextView tvTemperature;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_account, container, false);
+
+//        tvTemperature = view.findViewById(R.id.tvTemperature);
+//        sensorManager = (SensorManager) requireActivity().getSystemService(getContext().SENSOR_SERVICE);
+//        temperatureSensor = sensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
+//
+//        if (temperatureSensor != null) {
+//            temperatureListener = new SensorEventListener() {
+//                @Override
+//                public void onSensorChanged(SensorEvent event) {
+//                    float temp = event.values[0];
+//                    tvTemperature.setText(String.format(Locale.getDefault(), "%.1f°C", temp));
+//                }
+//
+//                @Override
+//                public void onAccuracyChanged(Sensor sensor, int accuracy) {
+//                }
+//            };
+//            sensorManager.registerListener(temperatureListener, temperatureSensor, SensorManager.SENSOR_DELAY_NORMAL);
+//        } else {
+//            tvTemperature.setText("Không có cảm biến nhiệt độ");
+//        }
+
+
+
         TextView tvDate = (TextView) view.findViewById(R.id.tvDate);
         Date currentDate = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE, dd MMMM yyyy", new Locale("vi", "VN"));
@@ -134,4 +168,13 @@ public class AccountFragment extends Fragment {
             dialog.dismiss();
         });
     }
+
+//    @Override
+//    public void onPause() {
+//        super.onPause();
+//        if (temperatureListener != null) {
+//            sensorManager.unregisterListener(temperatureListener);
+//        }
+//    }
+
 }
